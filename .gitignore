@@ -1,4 +1,8 @@
-# Created by https://www.gitignore.io/api/intellij,composer,node,symfony
+# Created by https://www.gitignore.io/api/vagrant,intellij,composer,node,symfony
+
+### Vagrant ###
+.vagrant/
+
 
 ### Intellij ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio
