@@ -1,0 +1,29 @@
+user.list:
+  path: '/'
+  defaults: { _controller: 'App\Controller\UserController::index' }
+  methods: [GET]
+
+user.get:
+  path: '/{id}'
+  defaults: { _controller: 'App\Controller\UserController::show' }
+  methods: [GET]
+
+user.create:
+  path: '/'
+  defaults: { _controller: 'App\Controller\UserController::store' }
+  methods: [POST]
+
+user.edit:
+  path: '/edit/{id}'
+  defaults: { _controller: 'App\Controller\UserController::edit' }
+  methods: [GET]
+
+user.update:
+  path: '/{id}'
+  defaults: { _controller: 'App\Controller\UserController::update' }
+  methods: [PUT]
+
+user.delete:
+  path: '/{id}'
+  defaults: { _controller: 'App\Controller\UserController::destroy' }
+  methods: [DELETE]
