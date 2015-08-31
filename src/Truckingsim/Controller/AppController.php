@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
-class AppController {
-    public function index() {
+class AppController
+{
+    public function index()
+    {
         // list users;
 
         return 'home';
