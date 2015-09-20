@@ -1,26 +1,28 @@
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
+require 'json'
+require 'yaml'
 
-# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
-VAGRANTFILE_API_VERSION = "2"
+VAGRANTFILE_API_VERSION ||= "2"
+confDir = $confDir ||= File.expand_path("vendor/laravel/homestead", File.dirname(__FILE__))
+
+homesteadYamlPath = "Homestead.yaml"
+homesteadJsonPath = "Homestead.json"
+afterScriptPath = "after.sh"
+aliasesPath = "aliases"
+
+require File.expand_path(confDir + '/scripts/homestead.rb')
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "ubuntu/trusty64"
+    if File.exists? aliasesPath then
+        config.vm.provision "file", source: aliasesPath, destination: "~/.bash_aliases"
+    end
 
-  config.vm.network :private_network, ip: "10.0.0.55"
-  config.ssh.forward_agent = true
+    if File.exists? homesteadYamlPath then
+        Homestead.configure(config, YAML::load(File.read(homesteadYamlPath)))
+    elsif File.exists? homesteadJsonPath then
+        Homestead.configure(config, JSON.parse(File.read(homesteadJsonPath)))
+    end
 
-  config.vm.synced_folder "./", "/var/www/TruckingSimGame"
-
-  config.vm.provider :virtualbox do |v|
-    v.customize ["modifyvm", :id, "--memory", 1024]
-    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-  end
-
-  ## Use all the defaults:
-  config.vm.provision :salt do |salt|
-    salt.minion_config = "salt/minion"
-    salt.run_highstate = true
-    salt.bootstrap_options = "-P"
-  end
+    if File.exists? afterScriptPath then
+        config.vm.provision "shell", path: afterScriptPath
+    end
 end
