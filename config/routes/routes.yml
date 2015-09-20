@@ -1,8 +1,0 @@
-home:
-  path: /
-  defaults: { _controller: 'App\Controller\AppController::index' }
-
-user:
-  prefix: /user
-  resource: user.yml
-

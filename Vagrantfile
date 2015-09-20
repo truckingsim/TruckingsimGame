@@ -10,7 +10,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :private_network, ip: "10.0.0.55"
   config.ssh.forward_agent = true
 
-  config.vm.synced_folder "salt/roots", "/srv/salt/"
   config.vm.synced_folder "./", "/var/www/TruckingSimGame"
 
   config.vm.provider :virtualbox do |v|
