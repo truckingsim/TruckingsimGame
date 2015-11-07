@@ -1,4 +1,4 @@
-# TruckingsimGame
+# TruckingsimGame [![Build Status](https://travis-ci.org/truckingsim/TruckingsimGame.svg?branch=develop-laravel)](https://travis-ci.org/truckingsim/TruckingsimGame)
 
 This is the official repository for TruckingSim, open source.
 
