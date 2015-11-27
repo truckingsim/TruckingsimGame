@@ -18,29 +18,35 @@
 
 <span class="overlay"></span>
 
-<nav class="main">
+<div class="navbar navbar-default">
     <div class="container">
-        <a href="/" class="brand">
-            Laravel
-        </a>
-
-        <div class="responsive-sidebar-nav">
-            <a href="#" class="toggle-slide menu-link btn">&#9776;</a>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Truckingsim</a>
         </div>
 
-        <ul class="main-nav">
-            @include('partials.main-nav')
-        </ul>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                @include('partials.main-nav')
+            </ul>
+        </div>
+
+
     </div>
-</nav>
+</div>
 
-@yield('content')
+<div class="container">
+    @yield('content')
+</div>
 
-<footer class="main">
-    <ul>
-        @include('partials.main-nav')
-    </ul>
-</footer>
+@yield('before_required_scripts')
+
+@yield('after_required_scripts')
 
 </body>
 </html>

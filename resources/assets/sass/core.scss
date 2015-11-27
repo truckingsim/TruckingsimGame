@@ -1,1 +1,10 @@
+// === Theme files ===
+//  Variables
+@import "resources/assets/sass/_variables.scss";
+
+// === Default bootstrap ===
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+// === Theme files ===
+//   Actual Theme file
+@import "resources/assets/sass/_simplex";
