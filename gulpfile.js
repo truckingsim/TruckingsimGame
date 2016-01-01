@@ -1,19 +1,31 @@
-var elixir = require('laravel-elixir');
+// Node Modules
 var gulp = require('gulp');
+var sass = require('gulp-sass');
 var webpack = require('webpack');
 var gutil = require('gulp-util');
+var sourcemaps = require('gulp-sourcemaps');
 
-/*
- |--------------------------------------------------------------------------
- | Elixir Asset Management
- |--------------------------------------------------------------------------
- |
- | Elixir provides a clean, fluent API for defining some basic Gulp tasks
- | for your Laravel application. By default, we are compiling the Sass
- | file for our application, as well as publishing vendor resources.
- |
- */
+// Local variables
+var sassPath = './resources/assets/sass/**/*.scss';
 
+// Default Task
+gulp.task('default', ['js-server', 'sass-watch']);
+
+// Gulp single tasks
+gulp.task('sass', function() {
+    gulp.src(sassPath)
+        .pipe(sourcemaps.init())
+        .pipe(sass().on('error', sass.logError))
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest('./public/css'));
+});
+
+// Gulp Watchers
+gulp.task('sass-watch', ['sass'], function() {
+    gulp.watch(sassPath, ['sass']);
+});
+
+// js server
 gulp.task('js-server', function() {
     var WebpackDevServer = require('webpack-dev-server');
 
@@ -29,13 +41,4 @@ gulp.task('js-server', function() {
 
         gutil.log('[webpack-dev-server]', 'http://localhost:3000/webpack-dev-server/index.html');
     })
-});
-
-elixir(function(mix) {
-    mix.sass('core.scss')
-        .version('css/core.css');
-});
-
-elixir(function(mix) {
-    mix.task('js-server');
 });

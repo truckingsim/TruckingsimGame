@@ -11,7 +11,7 @@
     <!--[if lte IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link rel="stylesheet" href="{{ elixir('css/core.css') }}">
+    <link rel="stylesheet" href="/css/core.css">
     <link rel="apple-touch-icon" href="/favicon.png">
 </head>
 <body>
