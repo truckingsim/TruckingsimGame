@@ -9,9 +9,7 @@ before_script:
   - npm install -g gulp
   - npm install
 
-script:
-  - vendor/bin/phpunit --configuration phpunit.xml
-  - gulp build
+script: vendor/bin/phpunit --configuration phpunit.xml && gulp build
 
 matrix:
   allow_failure:
