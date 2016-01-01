@@ -8,8 +8,9 @@ var sourcemaps = require('gulp-sourcemaps');
 // Local variables
 var sassPath = './resources/assets/sass/**/*.scss';
 
-// Default Task
+// Gulp grouped tasks
 gulp.task('default', ['js-server', 'sass-watch']);
+gulp.task('build', ['js-build', 'sass']);
 
 // Gulp single tasks
 gulp.task('sass', function() {
@@ -18,6 +19,14 @@ gulp.task('sass', function() {
         .pipe(sass().on('error', sass.logError))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('./public/css'));
+});
+
+gulp.task('js-build', function(cb) {
+    webpack(require('./webpack.config.prod.js'), function(err, stats) {
+        if(err) throw new gutil.PluginError('webpack', err);
+        gutil.log('[webpack]', stats.toString({}));
+        cb();
+    });
 });
 
 // Gulp Watchers

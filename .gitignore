@@ -101,3 +101,4 @@ crashlytics-build.properties
 # Build specific ignores
 public/build
 public/css/core.css*
+public/js/*.js

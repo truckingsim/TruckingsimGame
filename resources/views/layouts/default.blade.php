@@ -46,9 +46,11 @@
 
 @yield('after_required_scripts')
 
-{{ env('APP_DEBUG') }}
-@if(env('APP_DEBUG') == 1)
+@if(env('APP_ENV') == 'local')
     <script src="http://localhost:3000/js/app.js"></script>
+@else
+    <script src="/js/vendor.js"></script>
+    <script src="/js/app.js"></script>
 @endif
 
 </body>
