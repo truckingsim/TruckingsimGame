@@ -32,7 +32,7 @@ module.exports = {
     module: {
         loaders: [{
             test: /\.jsx?$/,
-            loaders: ['react-hot-loader', 'babel-loader?presets[]=react'],
+            loaders: ['react-hot-loader', 'babel-loader?presets[]=stage-0&presets[]=es2015&presets[]=react'],
             include: path.resolve(__dirname, 'resources/assets/js')
         }],
         noParse: [
